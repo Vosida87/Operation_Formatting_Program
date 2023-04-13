@@ -5,24 +5,24 @@ from datetime import datetime
 # Импортируем datetime для изменения отображения даты
 
 def get_data(path):
-
-    # Функция считывает данные с переданного файлаclea
-
+    """
+    Функция считывает данные с переданного файла
+    """
     with open(path, encoding='utf8') as file:
         data = json.load(file)
     return data
 
 def get_operations(data):
-
-    # Функция собирает данные только выполненых операций
-
+    """
+    Функция собирает данные только выполненых операций
+    """
     new_data = [operation for operation in data if 'state' in operation and operation['state'] == 'EXECUTED']
     return new_data
 
 def date_sort(data):
-
-    # Функция сортирует все операции по датам
-
+    """
+    Функция сортирует все операции по датам
+    """
     new_data = []
     for i in data:
         if i not in new_data:
@@ -31,16 +31,16 @@ def date_sort(data):
     return new_data
 
 def get_last_five_operations(data):
-
-    # Функция считывает пять последних операций клиента
-
+    """
+    Функция считывает пять последних операций клиента
+    """
     new_date = data[-5:]
     return new_date
 
 def changing_the_date_display(data):
-
-    # Функция изменяет отображение даты пользователю
-
+    """
+    Функция изменяет отображение даты пользователю
+    """
     new_date_data = []
     for operation in data:
         new_date = datetime.strptime(operation['date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
@@ -49,9 +49,9 @@ def changing_the_date_display(data):
     return new_date_data
 
 def changing_the_account_number_display(data):
-
-    # Функция изменяет отображение счетов и номеров карт
-
+    """
+    Функция изменяет отображение счетов и номеров карт
+    """
     new_numbers_data = []
     for operation in data:
         description = operation["description"]
