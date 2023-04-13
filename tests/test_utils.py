@@ -1,6 +1,12 @@
-from utils import get_data, get_operations, date_sort, changing_the_date_display, changing_the_account_number_display, get_last_five_operations
+from utils import get_data, get_operations, date_sort, changing_the_date_display
+from utils import changing_the_account_number_display, get_last_five_operations
+
+# Импортировал функции с utils для их тестирования
 
 def test_get_data():
+    """
+    для теста создал файл test_operations.json с небольшим количеством данных
+    """
     assert get_data('test_operations.json') == [
   {
     "id": 441945886,
@@ -48,7 +54,6 @@ def test_get_data():
     "to": "Счет 43597928997568165086"
   }
 ]
-
 data = get_data('test_operations.json')
 
 def test_get_operations():
@@ -57,6 +62,9 @@ def test_get_operations():
 data = get_operations(data)
 
 def test_date_sort():
+
+  # expect - то, что мы ожидаем, а список result собирает данные, которые вернёт функция
+
   expect = ["2018-01-26T15:40:13.413061", "2019-08-26T10:50:58.294041"]
   result = []
   data_test = date_sort(data)
@@ -78,6 +86,8 @@ def test_changing_the_account_number_display():
   data_test = changing_the_account_number_display(data)
   for number in data_test:
     result.append(number['from'])
+
+  # new_data - новые данные для обработки, чтобы проверить сценарии в функции
 
   new_data = [
     {
@@ -132,8 +142,6 @@ def test_changing_the_account_number_display():
     new_result.append(number["to"])
   assert result == expect
   assert new_result == new_expect
-
-
 
 def test_get_last_five_operations():
   expect = ['26.08.2019', '26.01.2018']

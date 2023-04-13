@@ -4,6 +4,9 @@ from utils import changing_the_date_display, changing_the_account_number_display
 # Импортурем функции для основной программы
 
 def main():
+    """
+    Основная функция для вывода последних 5-ти операций клиента
+    """
 
     # Собираем и сортируем данные функциями из data_utils
 
